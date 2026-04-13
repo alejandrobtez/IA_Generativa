@@ -1,6 +1,6 @@
 # 🥄 Proyecto Azure AI Foundry — Despliegue, Seguridad y Multimodalidad
 
-### Implementación de IA Generativa Responsable con AI Foundry
+### Implementación de IA Generativa con AI Foundry
 
 **🚀 VISTA RÁPIDA:** 
 
@@ -28,8 +28,8 @@ La primera fase se centró en establecer un entorno de chat seguro y validado. N
 ### 1.1 El Chat Inicial
 Comenzamos validando la conexión y el chat generativo básico.
 
-![Modelos Desplegados](img/model_gpt4o.png)
-> **Fig 1.** *Gestión de Modelos: Vista de los deployments de GPT-4o y o1-mini utilizados como motores de la práctica.*
+![Modelos Desplegados](img/model_gpt4omini.png)
+> **Fig 1.** *Gestión de Modelo: Vista del deployment de GPT 4o mini utilizado como motor de la práctica.*
 
 ### 1.2 Configuración de Seguridad (Guardrails)
 Para profesionalizar el chat, implementamos una política de seguridad robusta para filtrar el contenido inapropiado o peligroso.
@@ -56,16 +56,14 @@ Diferenciamos el comportamiento predictivo estándar del pensamiento nativo prof
 ### 2.2 Conectividad mediante Function Calling
 Superamos la limitación del conocimiento estático del modelo. Habilitamos la capacidad para que la IA decida cuándo usar una herramienta externa.
 
-* **Flujo:** El modelo identifica una intención del usuario (ej. consultar precio), genera un JSON con los parámetros, nosotros ejecutamos la función en Python y le devolvemos el resultado en tiempo real para formular la respuesta final.
-
 ---
 
 ## 👁️ 3. Experiencia Multimodal (Visión)
 
-El proyecto culmina con la validación de la multimodalidad nativa de **GPT-4o-mini**, integrando visión y texto.
+El proyecto culmina con la validación de la multimodalidad nativa de **GPT-4o**, integrando visión y texto.
 
-![Análisis de Configuración](img/model_gpt4omini.png)
-> **Fig 2.** *Deployment de Visión: Vista del modelo GPT-4o-mini utilizado como motor multimodal.*
+![Análisis de Configuración](img/model_gpt4o.png)
+> **Fig 2.** *Deployment de Visión: Vista del modelo GPT-4o utilizado como motor multimodal.*
 
 ### Validación de la Infraestructura
 Como prueba de concepto multimodal, enviamos al modelo las capturas de pantalla de la propia configuración de los Guardrails.
