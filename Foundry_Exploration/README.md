@@ -65,7 +65,9 @@ HIGH: Análisis profundo paso a paso. Ideal para problemas complejos o acertijos
 
 Es la capacidad de la IA para usar herramientas externas. El modelo detecta que necesita información en tiempo real (como datos meteorológicos), genera las instrucciones en JSON y espera a que nuestro código le devuelva el dato para cerrar la respuesta. Convierte al chat en un agente activo.
 
-> **Apunte** *Simulamos una API externa.*
+![Prompts de razonamiento](img/prompts.png)
+> **Fig 3.** *Como no hay **API**, simulamos una externa.*
+
 
 
 ---
@@ -75,7 +77,7 @@ Es la capacidad de la IA para usar herramientas externas. El modelo detecta que 
 El proyecto termina con la validación de la multimodalidad nativa de **GPT-4o**, integrando visión y texto.
 
 ![Análisis de Configuración](img/model_gpt4o.png)
-> **Fig 3.** *Deployment de Visión: Vista del modelo GPT-4o utilizado como motor multimodal.*
+> **Fig 4.** *Deployment de Visión: Vista del modelo GPT-4o utilizado como motor multimodal.*
 
 ### Validación de la Infraestructura
 Como prueba de concepto multimodal, enviamos al modelo la captura de pantalla de la propia configuración de los Guardrails.
