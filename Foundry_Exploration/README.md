@@ -2,7 +2,7 @@
 
 ### Implementación de IA Generativa Responsable con AI Foundry
 
-> **🚀 VISTA RÁPIDA:** Puedes explorar la lógica central de los notebooks y la interacción con la API aquí: [**📁 htmls/**](./)
+> **🚀 VISTA RÁPIDA:** Puedes explorar la lógica central de los notebooks y la interacción con la API aquí: [**📁 htmls/ejercicio01.html**](./)
 
 ---
 
