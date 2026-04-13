@@ -65,7 +65,7 @@ HIGH: Análisis profundo paso a paso. Ideal para problemas complejos o acertijos
 
 Es la capacidad de la IA para usar herramientas externas. El modelo detecta que necesita información en tiempo real (como datos meteorológicos), genera las instrucciones en JSON y espera a que nuestro código le devuelva el dato para cerrar la respuesta. Convierte al chat en un agente activo.
 
-![Prompts de razonamiento](img/simulación_api.png)
+![Simulación de API](img/simulacion_api.png)
 > **Fig 3.** *Como no hay **API**, simulamos una externa.*
 
 
