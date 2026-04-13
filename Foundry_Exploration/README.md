@@ -51,11 +51,10 @@ Para transformar el chat en un agente resolutivo, profundizamos en la lógica de
 
 En esta fase, marcamos un salto evolutivo en el proyecto. Mientras que con **gpt-4o** el razonamiento lo podemos emular mediante técnicas de **Prompt Engineering** en el *System Message*, con el nuevo **gpt-5-mini** utilizamos capacidades de **cadena de pensamiento** integradas directamente en el núcleo del modelo.
 
-![Autenticación Azure](img/clienteazure.png)  
-> **Fig 2.** *Configuración del Client con Token Provider para GPT 5 mini: Implementación de DefaultAzureCredential para una conexión robusta y profesional sin exposición de secretos.*
-
 > [!WARNING]
 > **Cuidado con el login:** Para acceder al token provider debemos acceder a nuestra cuenta de Azure desde la terminal mediante *az login*.
+![Autenticación Azure](img/clienteazure.png)  
+> **Fig 2.** *Configuración del Client con Token Provider para GPT 5 mini: Implementación de DefaultAzureCredential para una conexión robusta y profesional sin exposición de secretos.*
 
 ![Prompts de razonamiento](img/prompts.png)
 > **Fig 3.** *Ante la falta del parámetro nativo en GPT 4o, **solucionamos el reto técnico** emulando los niveles de razonamiento (*Low, Medium, High*) mediante **ingeniería de prompts** en el System Message.*
