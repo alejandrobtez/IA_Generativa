@@ -4,11 +4,11 @@
 
 **🚀 VISTA RÁPIDA:** 
 
-Text, JSON y Guardrails: [**📁 Ejercicio 1**](./notebooks/ejercicio01.ipynb)
+[**🦺 Text, JSON y Guardrails**](./notebooks/ejercicio01.ipynb)
 
-Reasoning y Function Calling: [**📁 Ejercicio 2**](./notebooks/ejercicio02.ipynb)
+[**🧠 Reasoning y Function Calling**](./notebooks/ejercicio02.ipynb)
 
-Modelos Multimodales: [**📁 Ejercicio 3**](./notebooks/ejercicio03.ipynb)
+[**💻 Modelos Multimodales**](./notebooks/ejercicio03.ipynb)
 
 
 ---
