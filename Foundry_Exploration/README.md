@@ -49,15 +49,13 @@ Para transformar el chat en un agente resolutivo, profundizamos en la lógica de
 
 ### 2.1 Razonamiento Nativo: GPT 5 mini VS GPT 4o
 
-En esta fase, marcamos un salto evolutivo en el proyecto. Mientras que con **GPT-4o** el razonamiento lo podemos emular mediante técnicas de **Prompt Engineering** en el *System Message*, con el nuevo **gpt-5-mini** utilizamos capacidades de **Cadena de Pensamiento** integradas directamente en el núcleo del modelo.
-
-Para gestionar el acceso a este modelo de última generación, implementamos una autenticación segura basada en **Azure Identity**.
+En esta fase, marcamos un salto evolutivo en el proyecto. Mientras que con **gpt-4o** el razonamiento lo podemos emular mediante técnicas de **Prompt Engineering** en el *System Message*, con el nuevo **gpt-5-mini** utilizamos capacidades de **cadena de pensamiento** integradas directamente en el núcleo del modelo.
 
 ![Autenticación Azure](img/clienteazure.png)  
 > **Fig 2.** *Configuración del Client con Token Provider para GPT 5 mini: Implementación de DefaultAzureCredential para una conexión robusta y profesional sin exposición de secretos.*
 
 ![Prompts de razonamiento](img/prompts.png)
-> **Fig 2.** *Ante la falta del parámetro nativo en GPT 4o, **solucionamos el reto técnico** emulando los niveles de razonamiento (*Low, Medium, High*) mediante **ingeniería de prompts** en el System Message.*
+> **Fig 3.** *Ante la falta del parámetro nativo en GPT 4o, **solucionamos el reto técnico** emulando los niveles de razonamiento (*Low, Medium, High*) mediante **ingeniería de prompts** en el System Message.*
 
 #### **Control del Esfuerzo Cognitivo (Reasoning Effort)**
 
@@ -83,7 +81,7 @@ A diferencia de los modelos estándar, el parámetro nativo `reasoning_effort` p
 Es la capacidad de la IA para usar herramientas externas. El modelo detecta que necesita información en tiempo real (como datos meteorológicos), genera las instrucciones en JSON y espera a que nuestro código le devuelva el dato para cerrar la respuesta. Convierte al chat en un agente activo.
 
 ![Simulación de API](img/simulacion_api.png)
-> **Fig 3.** *Como no hay **API**, simulamos una externa.*
+> **Fig 4.** *Como no hay **API**, simulamos una externa.*
 
 
 
@@ -94,7 +92,7 @@ Es la capacidad de la IA para usar herramientas externas. El modelo detecta que 
 El proyecto termina con la validación de la multimodalidad nativa de **GPT-4o**, integrando visión y texto.
 
 ![Análisis de Configuración](img/model_gpt4o.png)
-> **Fig 4.** *Deployment de Visión: Vista del modelo GPT-4o utilizado como motor multimodal.*
+> **Fig 5.** *Deployment de Visión: Vista del modelo GPT-4o utilizado como motor multimodal.*
 
 ### Validación de la Infraestructura
 Como prueba de concepto multimodal, enviamos al modelo la captura de pantalla de la propia configuración de los Guardrails.
