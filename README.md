@@ -14,7 +14,7 @@ Este repositorio centraliza las prácticas y proyectos realizados en el ámbito 
 
 ## 📂 Proyectos y Tareas
 
-#### 🥄 [Azure AI Foundry Exploration](./foundry_exploration)
+#### 🥄 [Azure AI Foundry Exploration](./Foundry_Exploration)
 Implementación integral en Azure que cubre el despliegue de modelos GPT-4o, la configuración de capas de seguridad (**Guardrails**), la emulación de niveles de razonamiento (**Reasoning**) mediante ingeniería de prompts y la conexión con herramientas externas mediante **Function Calling**. Incluye además validación **multimodal** analizando capturas de la propia infraestructura.
 
 ---
