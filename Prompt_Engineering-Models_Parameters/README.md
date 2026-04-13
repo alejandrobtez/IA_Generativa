@@ -2,15 +2,19 @@
 
 ### Optimización de IA Generativa en Azure AI Foundry
 
-**🚀 VISTA RÁPIDA:** * [**📑 Técnicas de Prompting**](./notebooks/ejercicio01.ipynb)
+**🚀 VISTA RÁPIDA:** 
+
+* [**📑 Técnicas de Prompting**](./notebooks/ejercicio01.ipynb)
+* 
 * [**⚙️ Experimentación de Parámetros**](./notebooks/ejercicio02.ipynb)
+* 
 * [**🎓 Tutorial de Técnicas Avanzadas**](./notebooks/ejercicio_extra.ipynb)
 
 ---
 
 ## 📖 Sobre el Proyecto
 
-Este proyecto documenta un proceso de experimentación profunda con modelos de lenguaje a través de la plataforma **Azure AI Foundry**. El objetivo principal es comprender cómo la estructura de las instrucciones (**Prompt Engineering**) y la configuración técnica de los modelos (**Parametrización**) afectan directamente a la calidad, creatividad y precisión de las respuestas de la IA.
+Este proyecto documenta un proceso de experimentación profunda con modelos de lenguaje, más específicamente GPT-4o a través de la plataforma **Azure AI Foundry**. El objetivo principal es comprender cómo la estructura de las instrucciones (**Prompt Engineering**) y la configuración técnica de los modelos (**Parametrización**) afectan directamente a la calidad, creatividad y precisión de las respuestas de la IA.
 
 A diferencia de una interacción básica, aquí se analiza el comportamiento del modelo bajo diferentes niveles de aleatoriedad, restricciones de vocabulario y metodologías de razonamiento avanzado.
 
@@ -80,5 +84,5 @@ Prueba del impacto de estímulos de importancia (como "Este es mi examen final")
 * **Control de Alucinaciones:** Mitigado mediante la combinación de `temperature: 0.0` y la instrucción explícita de "vía de escape" en el prompt.
 
 ---
-*Proyecto desarrollado como parte de la formación en IA & Big Data.*
+*Proyecto desarrollado como parte del Máster en IA & Big Data por Alejandro Benítez.*
 
