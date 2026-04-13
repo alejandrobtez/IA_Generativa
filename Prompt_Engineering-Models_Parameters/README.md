@@ -77,8 +77,8 @@ Prueba del impacto de estímulos de importancia (como "Este es mi examen final")
 
 ---
 
-## ⚠️ Desafíos Técnicos y Soluciones
-
+> [!WARNING]
+> ## ⚠️ Desafíos Técnicos y Soluciones
 * **Conectividad con Endpoints de Proyecto:** Se solucionó el error de compatibilidad de la ruta `/v1` utilizando la clase estándar de `OpenAI` con el `base_url` completo del proyecto en lugar del SDK de Azure tradicional.
 * **Seguridad de Credenciales:** Implementación de arquitectura basada en variables de entorno `.env` para evitar la exposición de API Keys en el historial de Git o en el código fuente.
 * **Control de Alucinaciones:** Mitigado mediante la combinación de `temperature: 0.0` y la instrucción explícita de "vía de escape" en el prompt.
