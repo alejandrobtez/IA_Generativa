@@ -56,6 +56,8 @@ En esta fase, marcamos un salto evolutivo en el proyecto. Mientras que con **gpt
 ![Autenticación Azure](img/clienteazure.png)  
 > **Fig 2.** *Configuración del Client con Token Provider para GPT 5 mini: Implementación de DefaultAzureCredential para una conexión robusta y profesional sin exposición de secretos.*
 
+> [!NOTE]
+> **Prompt Engineering:** Este proyecto emula el pensamiento para GPT 4o.
 ![Prompts de razonamiento](img/prompts.png)
 > **Fig 3.** *Ante la falta del parámetro nativo en GPT 4o, **solucionamos el reto técnico** emulando los niveles de razonamiento (*Low, Medium, High*) mediante **ingeniería de prompts** en el System Message.*
 
