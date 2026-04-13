@@ -3,9 +3,12 @@
 ### Implementación de IA Generativa Responsable con AI Foundry
 
 **🚀 VISTA RÁPIDA:** 
-Text, JSON y Guardrails: [**📁 Ejercicio 1**](./htmls/ejercicio01.html)
-Reasoning y Function Calling: [**📁 Ejercicio 2**](./htmls/ejercicio02.html)
-Modelos Multimodales: [**📁 Ejercicio 3**](./htmls/ejercicio03.html)
+
+Text, JSON y Guardrails: [**📁 Ejercicio 1**](./notebooks/ejercicio01.ipynb)
+
+Reasoning y Function Calling: [**📁 Ejercicio 2**](./notebooks/ejercicio02.ipynb)
+
+Modelos Multimodales: [**📁 Ejercicio 3**](./notebooks/ejercicio03.ipynb)
 
 
 ---
