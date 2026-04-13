@@ -50,25 +50,35 @@ Para transformar el chat en un agente resolutivo, profundizamos en la lógica de
 ### 2.1 Razonamiento Parametrizado (Reasoning)
 Diferenciamos el comportamiento predictivo estándar del pensamiento nativo profundo.
 
-* **Modelo o1-mini:** Utilizado para problemas lógicos complejos mediante el parámetro nativo `reasoning_effort`.
-* **Modelo GPT-4o:** Ante la falta del parámetro nativo en este modelo, **solucionamos el reto técnico** emulando los niveles de razonamiento (*Low, Medium, High*) mediante **ingeniería de prompts** en el System Message.
+Controlamos cuánto "piensa" el modelo antes de responder para equilibrar velocidad y precisión:
+
+LOW: Respuestas rápidas y directas. Ahorra tokens y tiempo en tareas sencillas.
+
+MEDIUM: Equilibrio entre lógica y rapidez. Revisa la coherencia sin tardar demasiado.
+
+HIGH: Análisis profundo paso a paso. Ideal para problemas complejos o acertijos donde el error no es una opción
+
+![Prompts de razonamiento](img/prompts.png)
+> **Fig 2.** *Ante la falta del parámetro nativo en este modelo, **solucionamos el reto técnico** emulando los niveles de razonamiento (*Low, Medium, High*) mediante **ingeniería de prompts** en el System Message.*
 
 ### 2.2 Conectividad mediante Function Calling
-Superamos la limitación del conocimiento estático del modelo. Habilitamos la capacidad para que la IA decida cuándo usar una herramienta externa.
-> **Apunte** *Simulamos una AI externa.*
+
+Es la capacidad de la IA para usar herramientas externas. El modelo detecta que necesita información en tiempo real (como datos meteorológicos), genera las instrucciones en JSON y espera a que nuestro código le devuelva el dato para cerrar la respuesta. Convierte al chat en un agente activo.
+
+> **Apunte** *Simulamos una API externa.*
 
 
 ---
 
 ## 👁️ 3. Experiencia Multimodal (Visión)
 
-El proyecto culmina con la validación de la multimodalidad nativa de **GPT-4o**, integrando visión y texto.
+El proyecto termina con la validación de la multimodalidad nativa de **GPT-4o**, integrando visión y texto.
 
 ![Análisis de Configuración](img/model_gpt4o.png)
-> **Fig 2.** *Deployment de Visión: Vista del modelo GPT-4o utilizado como motor multimodal.*
+> **Fig 3.** *Deployment de Visión: Vista del modelo GPT-4o utilizado como motor multimodal.*
 
 ### Validación de la Infraestructura
-Como prueba de concepto multimodal, enviamos al modelo las capturas de pantalla de la propia configuración de los Guardrails.
+Como prueba de concepto multimodal, enviamos al modelo la captura de pantalla de la propia configuración de los Guardrails.
 
 * **Reto:** El modelo analizó la imagen `img/guardrails.png`, identificando correctamente qué categorías de seguridad (Hate, Violence, Jailbreak) habíamos activado en el paso anterior y a qué nivel.
 
