@@ -49,7 +49,7 @@ Para transformar el chat en un agente resolutivo, profundizamos en la lógica de
 
 ### 2.1 Razonamiento Nativo: GPT 5 mini VS GPT 4o
 
-En esta fase, marcamos un salto evolutivo en el proyecto. Mientras que con **GPT-4o** el razonamiento se emulaba mediante técnicas de **Prompt Engineering** en el *System Message*, con el nuevo **gpt-5-mini** utilizamos capacidades de **Cadena de Pensamiento** integradas directamente en el núcleo del modelo.
+En esta fase, marcamos un salto evolutivo en el proyecto. Mientras que con **GPT-4o** el razonamiento lo podemos emular mediante técnicas de **Prompt Engineering** en el *System Message*, con el nuevo **gpt-5-mini** utilizamos capacidades de **Cadena de Pensamiento** integradas directamente en el núcleo del modelo.
 
 Para gestionar el acceso a este modelo de última generación, implementamos una autenticación segura basada en **Azure Identity**.
 
