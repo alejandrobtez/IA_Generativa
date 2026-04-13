@@ -55,6 +55,8 @@ Diferenciamos el comportamiento predictivo estándar del pensamiento nativo prof
 
 ### 2.2 Conectividad mediante Function Calling
 Superamos la limitación del conocimiento estático del modelo. Habilitamos la capacidad para que la IA decida cuándo usar una herramienta externa.
+> **Apunte** *Simulamos una AI externa.*
+
 
 ---
 
