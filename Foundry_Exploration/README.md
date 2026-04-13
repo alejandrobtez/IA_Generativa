@@ -47,19 +47,36 @@ Para profesionalizar el chat, implementamos una política de seguridad robusta p
 
 Para transformar el chat en un agente resolutivo, profundizamos en la lógica del modelo y su capacidad de acción.
 
-### 2.1 Razonamiento Parametrizado (Reasoning)
-Diferenciamos el comportamiento predictivo estándar del pensamiento nativo profundo.
+### 2.1 Razonamiento Nativo: GPT 5 mini VS GPT 4o
 
-Controlamos cuánto "piensa" el modelo antes de responder para equilibrar velocidad y precisión:
+En esta fase, marcamos un salto evolutivo en el proyecto. Mientras que con **GPT-4o** el razonamiento se emulaba mediante técnicas de **Prompt Engineering** en el *System Message*, con el nuevo **gpt-5-mini** utilizamos capacidades de **Cadena de Pensamiento** integradas directamente en el núcleo del modelo.
 
-LOW: Respuestas rápidas y directas. Ahorra tokens y tiempo en tareas sencillas.
+Para gestionar el acceso a este modelo de última generación, implementamos una autenticación segura basada en **Azure Identity**.
 
-MEDIUM: Equilibrio entre lógica y rapidez. Revisa la coherencia sin tardar demasiado.
-
-HIGH: Análisis profundo paso a paso. Ideal para problemas complejos o acertijos donde el error no es una opción
+![Autenticación Azure](img/clienteazure.png)  
+> **Fig 2.** *Configuración del Client con Token Provider para GPT 5 mini: Implementación de DefaultAzureCredential para una conexión robusta y profesional sin exposición de secretos.*
 
 ![Prompts de razonamiento](img/prompts.png)
-> **Fig 2.** *Ante la falta del parámetro nativo en este modelo, **solucionamos el reto técnico** emulando los niveles de razonamiento (*Low, Medium, High*) mediante **ingeniería de prompts** en el System Message.*
+> **Fig 2.** *Ante la falta del parámetro nativo en GPT 4o, **solucionamos el reto técnico** emulando los niveles de razonamiento (*Low, Medium, High*) mediante **ingeniería de prompts** en el System Message.*
+
+#### **Control del Esfuerzo Cognitivo (Reasoning Effort)**
+
+A diferencia de los modelos estándar, el parámetro nativo `reasoning_effort` permite graduar con precisión el tiempo que el modelo "reflexiona" antes de emitir una respuesta final:
+
+##### **Nivel LOW (Optimización)**
+* **Diferencia:** Es el equivalente al comportamiento de GPT-4o pero con mayor coherencia lógica interna.
+* **Uso ideal:** Tareas directas donde buscamos **latencia mínima** y ahorro de tokens.
+
+##### **Nivel MEDIUM (Equilibrio)**
+* **Diferencia:** Realiza validaciones intermedias que GPT-4o solía saltarse a menos que se le indicara explícitamente.
+* **Uso ideal:** Tareas de razonamiento moderado y redacción de contenido técnico.
+
+##### **Nivel HIGH (Análisis Profundo)**
+* **Diferencia:** El modelo activa su máxima capacidad de reflexión. Desglosa variables complejas en un espacio de pensamiento privado antes de responder, algo imposible de replicar solo con prompts en modelos anteriores.
+* **Uso ideal:** **Lógica compleja**, **matemáticas avanzadas** o **depuración de código crítico** donde la precisión es la prioridad absoluta.
+
+> [!IMPORTANT]  
+> **Nota Técnica de Implementación:** Al operar con **gpt-5-mini**, el pipeline se vuelve más eficiente al eliminar parámetros de muestreo como **temperature** o **top_p**. El modelo toma el control total de su variabilidad durante la fase de razonamiento interna para garantizar la máxima consistencia.
 
 ### 2.2 Conectividad mediante Function Calling
 
