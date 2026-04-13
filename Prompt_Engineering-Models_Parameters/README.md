@@ -3,12 +3,9 @@
 ### Optimización de IA Generativa en Azure AI Foundry
 
 **🚀 VISTA RÁPIDA:** 
-
-* [**📑 Técnicas de Prompting**](./notebooks/ejercicio01.ipynb)
-* 
-* [**⚙️ Experimentación de Parámetros**](./notebooks/ejercicio02.ipynb)
-* 
-* [**🎓 Tutorial de Técnicas Avanzadas**](./notebooks/ejercicio_extra.ipynb)
+[**📑 Técnicas de Prompting**](./notebooks/ejercicio01.ipynb)
+[**⚙️ Experimentación de Parámetros**](./notebooks/ejercicio02.ipynb)
+[**🎓 Tutorial de Técnicas Avanzadas**](./notebooks/ejercicio_extra.ipynb)
 
 ---
 
