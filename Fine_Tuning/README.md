@@ -22,7 +22,7 @@ La primera fase consistió en establecer la infraestructura necesaria en **Azure
 ### 1.1 Configuración de Microsoft Foundry
 Validamos el entorno de trabajo y la creación del recurso base para comenzar la gestión de modelos.
 
-![Setup Foundry](img/proyectofoundry.jpg)
+![Setup Foundry](img/proyectofoundry.png)
 > **Fig 1.** *Provisionamiento: Vista del proceso de configuración inicial de Azure AI Foundry para el proyecto.*
 
 ### 1.2 El Modelo Base
