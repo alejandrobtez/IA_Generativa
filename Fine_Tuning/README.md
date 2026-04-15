@@ -22,13 +22,13 @@ La primera fase consistió en establecer la infraestructura necesaria en **Azure
 ### 1.1 Configuración de Microsoft Foundry
 Validamos el entorno de trabajo y la creación del recurso base para comenzar la gestión de modelos.
 
-![Setup Foundry](proyectofoundry.jpg)
+![Setup Foundry](img/proyectofoundry.jpg)
 > **Fig 1.** *Provisionamiento: Vista del proceso de configuración inicial de Azure AI Foundry para el proyecto.*
 
 ### 1.2 El Modelo Base
 Como motor de partida, desplegamos una instancia de **GPT-4o-mini**, un modelo balanceado entre rendimiento y coste.
 
-![Model Details](model4ominidetails.png)
+![Model Details](img/model4ominidetails.png)
 > **Fig 2.** *Modelo Base: Detalles del despliegue gpt-4o-mini utilizado para las pruebas comparativas iniciales.*
 
 ---
@@ -40,13 +40,13 @@ Para que el modelo extraiga 'persona', 'empresa' y 'cargo' con precisión quirú
 ### 2.1 Preparación del Dataset
 Cargamos un dataset de 90 filas en formato `.jsonl` con el esquema de mensajes (System, User, Assistant) para enseñar al modelo el comportamiento deseado.
 
-![Dataset Preview](job.png)
+![Dataset Preview](img/job.png)
 > **Fig 3.** *Ingesta de Datos: Vista previa del dataset `training_set.jsonl` cargado en el portal de AI Foundry.*
 
 ### 2.2 Ejecución y Finalización del Job
 El proceso de entrenamiento se ejecutó de manera global para optimizar recursos, culminando con éxito tras procesar los ejemplos proporcionados.
 
-![Job Finished](jobfinished.png)
+![Job Finished](img/jobfinished.png)
 > **Fig 4.** *Estado del Entrenamiento: Confirmación del trabajo de Fine-Tuning completado exitosamente.*
 
 ---
@@ -58,13 +58,13 @@ Una vez obtenido el modelo "especialista", procedimos a crear un endpoint dedica
 ### 3.1 Configuración del Deployment
 Ajustamos los límites de tasa (TPM) para garantizar la disponibilidad del servicio.
 
-![Deployment Config](deploymentconfig.png)
+![Deployment Config](img/deploymentconfig.png)
 > **Fig 5.** *Customización: Configuración de los Guardrails y límites de tokens para el nuevo modelo fine-tuned.*
 
 ### 3.2 Endpoint Activo
 El resultado final es un despliegue operativo listo para recibir peticiones.
 
-![Deployment Details](deploymentdetails.png)
+![Deployment Details](img/deploymentdetails.png)
 > **Fig 6.** *Estado Succeeded: Vista final de los detalles del despliegue `extractor-entidades-v1`.*
 
 ---
