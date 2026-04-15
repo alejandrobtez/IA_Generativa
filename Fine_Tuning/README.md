@@ -64,7 +64,7 @@ Ajustamos los límites de tasa (TPM) para garantizar la disponibilidad del servi
 > **Fig 5.** *Customización: Configuración de los Guardrails y límites de tokens para el nuevo modelo fine-tuned.*
 
 > [!TIP]
-> Se optó por un despliegue Standard regional. Esto garantiza la coherencia técnica con el recurso de entrenamiento y asegura el cumplimiento de las políticas de residencia de datos en la región seleccionada.
+> Se optó por un despliegue Standard. Esto garantiza la coherencia técnica con el recurso de entrenamiento y asegura el cumplimiento de las políticas de residencia de datos en la región seleccionada.
 
 ### 3.2 Endpoint Activo
 El resultado final es un despliegue operativo listo para recibir peticiones.
