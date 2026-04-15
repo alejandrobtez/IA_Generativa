@@ -83,7 +83,7 @@ El proyecto culmina con un análisis exhaustivo en el Notebook, comparando el mo
 
 ---
 > [!NOTE]
->## 🛠️ Tecnologías Utilizadas
+>## Tecnologías Utilizadas
 >
 >* **Plataforma de IA:** Azure AI Foundry / Azure OpenAI Service.
 >* **Modelos:** GPT-4o-mini (Base) y GPT-4o-mini Fine-Tuned (Especializado).
@@ -93,7 +93,7 @@ El proyecto culmina con un análisis exhaustivo en el Notebook, comparando el mo
 ---
 > [!WARNING]
 >## Desafíos Técnicos y Soluciones
-
+>
 >* **Formato de Salida:** El modelo base tendía a incluir explicaciones de texto. El fine-tuning solucionó esto forzando una salida de **JSON puro**.
 >* **Seguridad de Credenciales:** Implementación estricta de variables de entorno vía `.env` para evitar la exposición de API Keys en el repositorio.
 
