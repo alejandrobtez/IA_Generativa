@@ -2,7 +2,7 @@
 
 ### Implementación de IA Generativa con AI Foundry
 
-**🚀 VISTA RÁPIDA:** [**📑 Dataset, Entrenamiento y Evaluación**](./notebooks/ejercicio.ipynb)
+**🚀 VISTA RÁPIDA:** [**📑 Fine-Tuning**](./notebooks/ejercicio.ipynb)
 
 
 ---
