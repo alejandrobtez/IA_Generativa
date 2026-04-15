@@ -31,6 +31,8 @@ Como motor de partida, desplegamos una instancia de **GPT-4o-mini**, un modelo b
 ![Model Details](img/model4ominidetails.png)
 > **Fig 2.** *Modelo Base: Detalles del despliegue gpt-4o-mini utilizado para las pruebas comparativas iniciales.*
 
+> [!TIP]
+> Se utilizó Global Standard para el modelo base buscando maximizar la agilidad en las pruebas iniciales.
 ---
 
 ## 🎯 2. Ciclo de Fine-Tuning: Especialización del Modelo
@@ -61,6 +63,9 @@ Ajustamos los límites de tasa (TPM) para garantizar la disponibilidad del servi
 ![Deployment Config](img/deploymentconfig.png)
 > **Fig 5.** *Customización: Configuración de los Guardrails y límites de tokens para el nuevo modelo fine-tuned.*
 
+> [!TIP]
+> Se optó por un despliegue Standard regional. Esto garantiza la coherencia técnica con el recurso de entrenamiento y asegura el cumplimiento de las políticas de residencia de datos en la región seleccionada.
+
 ### 3.2 Endpoint Activo
 El resultado final es un despliegue operativo listo para recibir peticiones.
 
@@ -77,20 +82,20 @@ El proyecto culmina con un análisis exhaustivo en el Notebook, comparando el mo
 * **Pruebas de Generalización:** Se validó que el modelo no solo memorizó los datos, sino que es capaz de extraer entidades en casos nuevos y filtrar "ruido" en casos tipo Edge.
 
 ---
-
-## 🛠️ Tecnologías Utilizadas
-
-* **Plataforma de IA:** Azure AI Foundry / Azure OpenAI Service.
-* **Modelos:** GPT-4o-mini (Base) y GPT-4o-mini Fine-Tuned (Especializado).
-* **Lenguajes & Librerías:** Python 3.14+, OpenAI SDK, Pandas, Matplotlib, Python-Dotenv.
-* **Formato de Datos:** JSONL (JSON Lines).
+> [!NOTE]
+>## 🛠️ Tecnologías Utilizadas
+>
+>* **Plataforma de IA:** Azure AI Foundry / Azure OpenAI Service.
+>* **Modelos:** GPT-4o-mini (Base) y GPT-4o-mini Fine-Tuned (Especializado).
+>* **Lenguajes & Librerías:** Python 3.14+, OpenAI SDK, Pandas, Matplotlib, Python-Dotenv.
+>* **Formato de Datos:** JSONL (JSON Lines).
 
 ---
+> [!WARNING]
+>## Desafíos Técnicos y Soluciones
 
-## ⚠️ Desafíos Técnicos y Soluciones
-
-* **Formato de Salida:** El modelo base tendía a incluir explicaciones de texto. El fine-tuning solucionó esto forzando una salida de **JSON puro**.
-* **Seguridad de Credenciales:** Implementación estricta de variables de entorno vía `.env` para evitar la exposición de API Keys en el repositorio.
+>* **Formato de Salida:** El modelo base tendía a incluir explicaciones de texto. El fine-tuning solucionó esto forzando una salida de **JSON puro**.
+>* **Seguridad de Credenciales:** Implementación estricta de variables de entorno vía `.env` para evitar la exposición de API Keys en el repositorio.
 
 ---
 *Proyecto desarrollado como parte del Máster en IA & Big Data por Alejandro Benítez.*
