@@ -52,7 +52,7 @@ Cargamos un dataset de 90 filas en formato `.jsonl` con el esquema de mensajes (
 >* **Garantía de Formato:** Es la técnica más efectiva para forzar la salida en **JSON puro**, eliminando la verbosidad y el tono conversacional del modelo base.
 >* **Eficiencia con Datasets Pequeños:** Permite alcanzar una precisión máxima y convergencia de métricas con solo 90 ejemplos, optimizando el tiempo de cómputo y el coste del proyecto.
 
---
+---
 
 ### 2.2 Ejecución y Finalización del Job
 El proceso de entrenamiento se ejecutó de manera global para optimizar recursos, culminando con éxito tras procesar los ejemplos proporcionados.
