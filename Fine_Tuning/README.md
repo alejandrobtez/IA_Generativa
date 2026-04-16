@@ -44,6 +44,7 @@ Cargamos un dataset de 90 filas en formato `.jsonl` con el esquema de mensajes (
 
 ![Dataset Preview](img/job.png)
 > **Fig 3.** *Ingesta de Datos: Vista previa del dataset `training_set.jsonl` cargado en el portal de AI Foundry.*
+
 > [!NOTE]
 >### Fine-Tuning Supervisado 
 >
