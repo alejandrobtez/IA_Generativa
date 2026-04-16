@@ -8,109 +8,78 @@
 
 ## 📖 Sobre el Proyecto
 
-Este proyecto documenta el flujo de trabajo para implementar un sistema de **Generación Aumentada por Recuperación (RAG)**. El objetivo principal es permitir que un modelo de lenguaje consulte una base de conocimientos técnica (SQL y eventos) para ofrecer respuestas precisas y fundamentadas.
+Este proyecto documenta el flujo de trabajo para implementar un sistema de **Generación Aumentada por Recuperación (RAG)**. El sistema es capaz de consultar una base de conocimientos técnica (SQL y eventos) para ofrecer respuestas precisas y fundamentadas.
 
-A lo largo del desarrollo, hemos configurado un ecosistema capaz de realizar **Búsqueda Híbrida** (Vectores + Palabras clave) y optimizar los resultados mediante **Re-ranking Semántico**, garantizando que la información más relevante siempre aparezca en las primeras posiciones.
+Hemos pasado de una búsqueda tradicional a un ecosistema avanzado que combina **Vectores**, **Búsqueda Híbrida** y **Re-ranking Semántico**, optimizando la relevancia mediante perfiles de puntuación personalizados.
 
 ---
 
 ## 🏗️ 1. Infraestructura y Configuración del Entorno
 
-La primera fase consistió en desplegar los servicios base en Azure para soportar el almacenamiento y el procesamiento de los datos.
+En esta fase se desplegaron los tres pilares necesarios para el proyecto. A continuación, se detallan los recursos creados:
 
-### 1.1 Azure AI Search
-Configuramos el servicio de búsqueda `generativasearch`. Se seleccionó el nivel **Basic** para contar con capacidades de búsqueda vectorial y semántica.
-
-![Setup AI Search](img/aisearchconfig.png)
-> **Fig 1.** *Provisionamiento: Configuración inicial del servicio Azure AI Search.*
-
-### 1.2 Almacenamiento (Blob Storage)
-Desplegamos la cuenta de almacenamiento `aisearchalm` donde se alojarán los archivos PDF originales.
-
-![Setup Storage](img/storageconfig.png)
-> **Fig 2.** *Data Source: Creación del recurso de almacenamiento para los documentos fuente.*
-
-### 1.3 Azure OpenAI Service
-Instanciamos el servicio de OpenAI para gestionar el modelo de embeddings.
-
-![Setup OpenAI](img/openaiconfig.png)
-> **Fig 3.** *IA Engine: Configuración del recurso de Azure OpenAI `openaiembedd`.*
+| Recurso | Propósito | Captura de Configuración |
+| :--- | :--- | :--- |
+| **Azure AI Search** | Motor de búsqueda vectorial y semántica. | ![AI Search](img/aisearchconfig.png) |
+| **Blob Storage** | Almacenamiento (Data Lake) para los archivos PDF. | ![Storage](img/storageconfig.png) |
+| **Azure OpenAI** | Servicio de IA para el modelo de embeddings. | ![OpenAI](img/openaiconfig.png) |
 
 ---
 
-## 📥 2. Preparación y Seguridad de los Datos
+## 📥 2. Preparación de Datos y Modelos
 
-Antes de indexar, preparamos el contenedor y gestionamos las credenciales necesarias para la conexión entre servicios.
+Antes de la ingesta, configuramos el acceso seguro y el modelo encargado de la vectorización:
 
-### 2.1 Contenedores y Claves de Acceso
-Creamos el contenedor `embeddingscontainer` y extrajimos las cadenas de conexión necesarias para que el servicio de búsqueda pueda "leer" el almacenamiento.
-
-![Blob Container](img/blobcontainer.png)
-> **Fig 4.** *Contenedor: Preparación del espacio para la ingesta de documentos.*
-
-![Access Keys](img/storagekeys.png)
-> **Fig 5.** *Seguridad: Gestión de Access Keys para la integración técnica.*
-
-### 2.2 Despliegue del Modelo de Embedding
-Configuramos el modelo **text-embedding-3-small**, encargado de transformar el texto en vectores de 1536 dimensiones.
-
-![Model Config](img/modelconfig.png)
-> **Fig 6.** *Embedding Model: Detalles del despliegue del modelo de IA.*
+| Componente | Detalle Técnico | Captura |
+| :--- | :--- | :--- |
+| **Contenedor** | Creación de `embeddingscontainer` para los archivos. | ![Container](img/blobcontainer.png) |
+| **Seguridad** | Gestión de Access Keys para la conexión entre servicios. | ![Keys](img/storagekeys.png) |
+| **Modelo** | Despliegue de `text-embedding-3-small` (1536 dim). | ![Model](img/modelconfig.png) |
 
 ---
 
 ## ⚙️ 3. Pipeline de RAG: Importación y Vectorización
 
-Utilizamos el asistente de Azure para automatizar la fragmentación (chunking) y la vectorización de los archivos.
+Utilizamos el asistente automático para crear el Skillset (OCR, Merge, Split y Embedding) y el Indexer.
 
-### 3.1 Configuración del Asistente (Wizard)
-Definimos los parámetros del pipeline, incluyendo el prefijo del índice y la activación del **Semantic Ranker**.
+### 3.1 Configuración e Historial
+Definimos el prefijo del índice y activamos el **Semantic Ranker**. Tras la ejecución, monitoreamos el historial para confirmar que todos los fragmentos se cargaron correctamente.
 
 ![RAG Config](img/ragconfig.png)
-> **Fig 7.** *Pipeline RAG: Configuración integral de Skillset, Índice e Indexador.*
-
-### 3.2 Ejecución y Monitoreo del Indexador
-Validamos que el indexador procese los documentos con éxito, transformando los PDFs en fragmentos navegables.
+> **Fig 1.** *Configuración del asistente RAG.*
 
 ![Indexer Status](img/indexer.png)
-> **Fig 8.** *Indexer History: Estado de éxito tras la ejecución del proceso de carga.*
+> **Fig 2.** *Historial de éxito del indexador.*
 
 ---
 
-## 🚀 4. Validación y Optimización de Búsqueda
+## 🚀 4. Validación y Resolución de Errores
 
-La fase final consistió en probar el motor de búsqueda y ajustar la relevancia de los resultados.
+Esta es la fase de pruebas en el **Search Explorer** y el ajuste fino de la relevancia.
 
-### 4.1 Search Explorer y Fragmentación
-Comprobamos en el portal que los documentos se han dividido correctamente en "chunks" y que el score vectorial es coherente.
+### 4.1 El problema de la densidad de datos
+Al inicio del proyecto, las pruebas devolvían resultados idénticos o erróneos. Detectamos que, al tener **solo 1 documento** subido, el motor de búsqueda no tenía suficiente variedad para discriminar resultados. 
 
 ![Search Explorer](img/errorchunks.png)
-> **Fig 9.** *Validación: Prueba de consulta y visualización de fragmentos (chunks).*
+> **Fig 3.** *Solución de datos: Tras detectar resultados planos con 1 solo archivo, subimos un set de 15 documentos para que el motor pudiera calcular scores de relevancia reales.*
 
-### 4.2 Scoring Profiles (Relevancia Personalizada)
-Creamos perfiles de puntuación para dar más peso a campos específicos. Tuvimos que crear el perfil `perfilExtra` para dar prioridad al campo `chunk`, garantizando resultados más precisos.
+### 4.2 Scoring Profiles: El error de los campos "Searchable"
+Para mejorar la precisión, intentamos priorizar el título del documento, pero nos encontramos con un desafío técnico:
+
+1. **Perfil `prioridadTitulo`:** Fue nuestro primer intento para dar peso al campo `title`. Sin embargo, Azure devolvía error porque el campo `title` no fue marcado como **Searchable** en el esquema original.
+2. **Perfil `perfilExtra`:** Como solución, creamos este segundo perfil centrado en el campo `chunk`. Al ser este el campo principal de búsqueda, el peso aplicado permitió alterar el orden de los resultados con éxito.
 
 ![Scoring Profiles](img/scoringprofiles.png)
-> **Fig 10.** *Custom Scoring: Configuración de perfiles para alterar la relevancia de los resultados.*
-
----
-
-> [!NOTE]
-> ## Tecnologías Utilizadas
->
-> * **Plataforma:** Azure AI Search / Azure OpenAI.
-> * **Modelos:** text-embedding-3-small (1536 dimensiones).
-> * **Almacenamiento:** Azure Blob Storage.
-> * **Lenguajes:** Python 3.14+, Azure SDK, Jupyter Notebooks.
+> **Fig 4.** *Gestión de Perfiles: Vista de ambos perfiles y los pesos aplicados sobre los campos del índice.*
 
 ---
 
 > [!TIP]
-> ## Desafíos y Soluciones
+> ## Aprendizajes Clave
 >
-> * **Relevancia:** La búsqueda estándar no siempre priorizaba los títulos. Se solucionó implementando **Scoring Profiles**.
-> * **Búsqueda Semántica:** Se activó el **Semantic Ranker** para obtener el `reranker_score`, permitiendo una comprensión contextual de las preguntas SQL.
-> * **Seguridad:** Uso de variables de entorno `.env` y **Managed Identities** para proteger las claves del servicio.
+> * **Volumen de Datos:** Un sistema RAG necesita una base de conocimientos nutrida para que los algoritmos de similitud de coseno funcionen correctamente.
+> * **Esquema de Índice:** Es vital planificar qué campos serán "Searchable" desde el inicio, ya que los Scoring Profiles dependen estrictamente de este atributo.
+> * **Búsqueda Semántica:** El re-ranker semántico demostró ser la capa más eficaz para entender consultas complejas sobre conceptos de bases de datos.
 
 ---
 *Proyecto desarrollado como parte del Máster en IA & Big Data por Alejandro Benítez.*
