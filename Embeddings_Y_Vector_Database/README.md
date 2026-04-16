@@ -33,7 +33,7 @@ Desplegamos la cuenta de almacenamiento `aisearchalm` donde se alojarán los arc
 ### 1.3 Azure OpenAI Service
 Instanciamos el servicio de OpenAI para gestionar el modelo de embeddings.
 
-![Setup OpenAI](img/openaiconfig.jpg)
+![Setup OpenAI](img/openaiconfig.png)
 > **Fig 3.** *IA Engine: Configuración del recurso de Azure OpenAI `openaiembedd`.*
 
 ---
@@ -45,16 +45,16 @@ Antes de indexar, preparamos el contenedor y gestionamos las credenciales necesa
 ### 2.1 Contenedores y Claves de Acceso
 Creamos el contenedor `embeddingscontainer` y extrajimos las cadenas de conexión necesarias para que el servicio de búsqueda pueda "leer" el almacenamiento.
 
-![Blob Container](img/blobcontainer.jpg)
+![Blob Container](img/blobcontainer.png)
 > **Fig 4.** *Contenedor: Preparación del espacio para la ingesta de documentos.*
 
-![Access Keys](img/storagekeys.jpg)
+![Access Keys](img/storagekeys.png)
 > **Fig 5.** *Seguridad: Gestión de Access Keys para la integración técnica.*
 
 ### 2.2 Despliegue del Modelo de Embedding
 Configuramos el modelo **text-embedding-3-small**, encargado de transformar el texto en vectores de 1536 dimensiones.
 
-![Model Config](img/modelconfig.jpg)
+![Model Config](img/modelconfig.png)
 > **Fig 6.** *Embedding Model: Detalles del despliegue del modelo de IA.*
 
 ---
