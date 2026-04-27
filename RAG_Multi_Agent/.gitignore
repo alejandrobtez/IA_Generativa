@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+*.egg-info/
+
+# Runtime data (never commit)
+backend/uploads/
+backend/data/
+backend/chroma_db/
+backend/rag_app.db
+backend/*.db
+
+# Frontend build
+frontend/node_modules/
+frontend/dist/
+
+# Misc
+.DS_Store
+.claude/
+img/
