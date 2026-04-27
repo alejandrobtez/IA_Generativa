@@ -1,27 +1,14 @@
-# Multi-Asistente RAG — Plataforma de IA Generativa
+# 🤖 Multi-Asistente RAG — Plataforma de IA Generativa
 
-Aplicación full-stack que permite crear y gestionar **múltiples asistentes IA personalizados**, cada uno con sus propias instrucciones de sistema y base de conocimiento documental independiente. Construida sobre Azure OpenAI, Azure AI Search y LangChain.
+### Aplicación full-stack para crear y gestionar asistentes IA con base documental propia
 
----
-
-## Índice
-
-1. [Descripción general](#descripción-general)
-2. [Arquitectura](#arquitectura)
-3. [Almacenamiento sin base de datos](#almacenamiento-sin-base-de-datos)
-4. [Pipeline de Ingesta](#pipeline-de-ingesta)
-5. [Pipeline RAG (Recuperación y Generación)](#pipeline-rag)
-6. [Chat Global — Mezcla real de asistentes](#chat-global)
-7. [Stack Tecnológico](#stack-tecnológico)
-8. [Funcionalidades](#funcionalidades)
-9. [Requisitos previos](#requisitos-previos)
-10. [Instalación y ejecución](#instalación-y-ejecución)
-11. [Uso](#uso)
-12. [Garantías del sistema](#garantías-del-sistema)
+**🚀 VISTA RÁPIDA:** [**📂 Repositorio del Proyecto**](https://github.com/alejandrobtez/IA_Generativa/tree/main/RAG_Multi_Agent)
 
 ---
 
-## Descripción general
+## 📖 Sobre el Proyecto
+
+Esta plataforma permite crear y gestionar **múltiples asistentes IA personalizados**, cada uno con sus propias instrucciones de sistema y base de conocimiento documental independiente. Construida sobre **Azure OpenAI**, **Azure AI Search** y **LangChain**.
 
 Cada asistente tiene su propio índice vectorial aislado en Azure AI Search. Al chatear, el sistema:
 
@@ -32,9 +19,12 @@ Cada asistente tiene su propio índice vectorial aislado en Azure AI Search. Al 
 
 El asistente **nunca mezcla información entre asistentes** y declina responder si la información no está en su base documental.
 
+![Sobre el Proyecto](img/sobreelproyecto.png)
+> **Fig 1.** *Vista general de la plataforma: información del proyecto y descripción de la arquitectura multi-asistente.*
+
 ---
 
-## Arquitectura
+## 🏗️ 1. Arquitectura del Sistema
 
 ```
 RAG/
@@ -69,12 +59,15 @@ RAG/
 │           └── AboutView.jsx        # Información del proyecto
 │
 └── img/
-    └── shawn.jpg                # Foto de perfil
+    └── ...                      # Capturas de la plataforma
 ```
+
+![Asistentes Creados](img/asistentescreados.png)
+> **Fig 2.** *Dashboard: asistentes ya creados con sus instrucciones de sistema configuradas individualmente.*
 
 ---
 
-## Almacenamiento sin base de datos
+## 💾 2. Almacenamiento sin Base de Datos
 
 Este proyecto **no usa ninguna base de datos relacional** (ni SQLite, ni PostgreSQL, ni ninguna otra). Toda la persistencia se gestiona mediante **cuatro archivos JSON** ubicados en `backend/data/`:
 
@@ -85,7 +78,7 @@ Este proyecto **no usa ninguna base de datos relacional** (ni SQLite, ni Postgre
 | `conversations.json` | Conversaciones de chat con su título y asistente asociado |
 | `messages.json` | Mensajes individuales (rol, contenido, citas, timestamp) |
 
-### Cómo funciona `JSONStore`
+### 2.1 Cómo funciona `JSONStore`
 
 La clase `JSONStore` en `storage.py` gestiona cada archivo JSON con las siguientes características:
 
@@ -105,17 +98,18 @@ assistants_store.delete(1)
 assistants_store.filter(assistant_id=3)  # Filtro por cualquier campo
 ```
 
-### Almacenamiento vectorial (Azure AI Search)
+### 2.2 Almacenamiento vectorial (Azure AI Search)
 
-Los embeddings y chunks de documentos **no se guardan en JSON** — se almacenan en **Azure AI Search**, un servicio de búsqueda vectorial en la nube. Se crea **un índice separado por asistente**, con el nombre `{AZURE_SEARCH_INDEX_NAME}-{assistant_id}`. Esto garantiza aislamiento total entre asistentes.
+Los embeddings y chunks de documentos **no se guardan en JSON** — se almacenan en **Azure AI Search**, un servicio de búsqueda vectorial en la nube.
 
-Los archivos originales (PDF, DOCX, TXT, PPTX) se guardan físicamente en `backend/uploads/` con el nombre `{document_id}_{filename_original}`.
+> [!NOTE]
+> Se crea **un índice separado por asistente**, con el nombre `{AZURE_SEARCH_INDEX_NAME}-{assistant_id}`. Esto garantiza aislamiento total entre asistentes. Los archivos originales (PDF, DOCX, TXT, PPTX) se guardan físicamente en `backend/uploads/` con el nombre `{document_id}_{filename_original}`.
 
 ---
 
-## Pipeline de Ingesta
+## 📥 3. Pipeline de Ingesta
 
-Cuando el usuario sube un documento:
+Cuando el usuario sube un documento, se ejecuta el siguiente pipeline:
 
 ```
 Archivo (PDF / DOCX / TXT / PPTX / MD)
@@ -143,9 +137,12 @@ AzureOpenAIEmbeddings  →  vector de 1536 dimensiones por chunk
 Azure AI Search — índice: asistente-{assistant_id}
 ```
 
+> [!TIP]
+> Una vez subidos los documentos, el botón **Generar con IA** analiza el contenido completo y redacta automáticamente las instrucciones de sistema del asistente, adaptadas al material cargado.
+
 ---
 
-## Pipeline RAG
+## 🔍 4. Pipeline RAG (Recuperación y Generación)
 
 Cuando el usuario envía un mensaje al chat:
 
@@ -178,13 +175,16 @@ Respuesta + lista de documentos fuente (citas)
 Guardado en messages.json
 ```
 
+![Chat Viabilidad](img/chatviabilidad.png)
+> **Fig 3.** *Ejemplo real: asistente configurado para analizar la viabilidad de un proyecto a partir de los documentos subidos, con citas de los fragmentos fuente.*
+
 ---
 
-## Chat Global
+## 🌐 5. Chat Global — Mezcla Real de Asistentes
 
 El **Chat Global** permite consultar simultáneamente las bases documentales de **múltiples asistentes** en una única conversación. Es la funcionalidad que diferencia esta plataforma de un RAG convencional.
 
-### Cómo funciona la mezcla real
+### 5.1 Cómo funciona la mezcla real
 
 ```
 Pregunta del usuario
@@ -209,7 +209,10 @@ GPT-4o recibe TODO el contexto combinado
 Respuesta unificada + citas de todos los documentos
 ```
 
-### Garantías del Chat Global
+![Chat Global](img/chatglobal.png)
+> **Fig 4.** *Chat Global en acción: consulta simultánea a varios asistentes con sus bases documentales fusionadas en tiempo real.*
+
+### 5.2 Garantías del Chat Global
 
 - Cada asistente tiene su propio índice en Azure AI Search: **los índices nunca se mezclan a nivel de almacenamiento**.
 - La mezcla ocurre **solo en el contexto del prompt**, controlada explícitamente.
@@ -219,21 +222,7 @@ Respuesta unificada + citas de todos los documentos
 
 ---
 
-## Stack Tecnológico
-
-| Capa | Tecnología |
-|---|---|
-| Backend | Python 3.12, FastAPI |
-| LLM | Azure OpenAI GPT-4o |
-| Embeddings | Azure OpenAI `text-embedding-ada-002` |
-| Búsqueda vectorial | Azure AI Search (un índice por asistente) |
-| Orquestación RAG | LangChain (`langchain`, `langchain-openai`, `langchain-community`) |
-| Persistencia estructurada | JSON en disco (sin base de datos) |
-| Frontend | React 18 + Vite, CSS Glassmorphism dark |
-
----
-
-## Funcionalidades
+## ⚡ 6. Funcionalidades
 
 | Funcionalidad | Descripción |
 |---|---|
@@ -250,7 +239,24 @@ Respuesta unificada + citas de todos los documentos
 
 ---
 
-## Requisitos previos
+> [!NOTE]
+> ## 🛠️ Stack Tecnológico
+>
+> | Capa | Tecnología |
+> |---|---|
+> | **Backend** | Python 3.12, FastAPI |
+> | **LLM** | Azure OpenAI GPT-4o |
+> | **Embeddings** | Azure OpenAI `text-embedding-ada-002` |
+> | **Búsqueda vectorial** | Azure AI Search (un índice por asistente) |
+> | **Orquestación RAG** | LangChain (`langchain`, `langchain-openai`, `langchain-community`) |
+> | **Persistencia estructurada** | JSON en disco (sin base de datos) |
+> | **Frontend** | React 18 + Vite, CSS Glassmorphism dark |
+
+---
+
+## ⚙️ 7. Instalación y Ejecución
+
+### 7.1 Requisitos previos
 
 - Python 3.10+
 - Node.js 18+
@@ -258,11 +264,7 @@ Respuesta unificada + citas de todos los documentos
   - **Azure OpenAI** con deployments de chat (`gpt-4o`) y embeddings (`text-embedding-ada-002`)
   - **Azure AI Search** (tier Basic o superior)
 
----
-
-## Instalación y ejecución
-
-### 1. Backend
+### 7.2 Backend
 
 ```bash
 cd backend
@@ -298,7 +300,10 @@ uvicorn main:app --reload
 # Docs interactivas en http://localhost:8000/docs
 ```
 
-### 2. Frontend
+> [!TIP]
+> Una vez arrancado, accede a `http://localhost:8000/docs` para explorar todos los endpoints de la API de forma interactiva con Swagger UI.
+
+### 7.3 Frontend
 
 ```bash
 cd frontend
@@ -309,7 +314,7 @@ npm run dev
 
 ---
 
-## Uso
+## 🚀 8. Uso
 
 1. Abre `http://localhost:5173`.
 2. En **Mis Asistentes**, pulsa **Crear Asistente** — introduce nombre, descripción e instrucciones de sistema.
@@ -320,7 +325,7 @@ npm run dev
 
 ---
 
-## Garantías del sistema
+## 🛡️ 9. Garantías del Sistema
 
 | Propiedad | Implementación |
 |---|---|
@@ -334,9 +339,12 @@ npm run dev
 
 ---
 
-## Autor
+> [!WARNING]
+> ## Seguridad de Credenciales
+>
+> Nunca incluyas tus API Keys directamente en el código. Este proyecto utiliza un archivo `backend/.env` que debe añadirse a `.gitignore` para evitar exponer credenciales de Azure OpenAI y Azure AI Search en el repositorio.
 
-**Alejandro Benítez**  
-Máster en Inteligencia Artificial & Big Data  
-[GitHub](https://github.com/alejandrobtez) · [LinkedIn](https://www.linkedin.com/in/alejandrobtez)  
-[Repositorio del proyecto](https://github.com/alejandrobtez/IA_Generativa/tree/main/RAG_Multi_Agent)
+---
+
+*Proyecto desarrollado como parte del Máster en IA & Big Data por Alejandro Benítez.*  
+[GitHub](https://github.com/alejandrobtez) · [LinkedIn](https://www.linkedin.com/in/alejandrobtez)
